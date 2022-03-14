@@ -1,10 +1,14 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  font-family: "Quicksand";
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App {
+  text-align: center;
+  /* background-image: url("https://media.istockphoto.com/photos/supermarket-aisle-blur-abstract-background-picture-id843469610?k=20&m=843469610&s=612x612&w=0&h=fi1fLbQzySZZefN7bAhDde0ZxNmEiAa6QEvSdc6wzz8="); */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,7 +36,67 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+/* body {
+  background-color: #282c34;
+} */
+
+.menu-navbar {
+  /* justify-content: center; */
+  /* margin-bottom: 25px; */
+}
+
+.items-container {
+  /* margin-top: 60px; */
+  background-color: #373940;
+  padding-top: 12px;
+}
+
+.progressBar {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+.item{
+  background-color: azure;
+}
+
+.item img {
+  width: 100px;
+  margin: auto;
+  padding: 12px 22px;
+}
+
+.singleItem{
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+  padding-top: 15px;
+  
+}
+
+.singleItem div {
+  /* background-color: rgb(221, 58, 58); */
+  width: 60%;
+  margin: auto;
+}
+
+.singleItem p {
+  margin-top: 15px;
+}
+
+.singleItem img{
+  width: 300px;
+  margin: auto;
+  padding: 14px 22px;
+}
+
+.singleItem button {
+  margin-top: 15px;
 }
