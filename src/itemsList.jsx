@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import Item from "./item";
 import { ProgressBar } from "react-bootstrap";
 
-export default function ItemsList() {
+export default function ItemsList(props) {
   let [data, setData] = useState(null);
   let [isPending, setIsPending] = useState(true);
   let [error, setError] = useState(null);
+
+  // let allItems = props.allItems;
 
   useEffect(() => {
     const abortCont = new AbortController();
@@ -33,22 +35,27 @@ export default function ItemsList() {
   }, [data]);
 
   return (
-    <div className="row">
-      {error && <div>{error}</div>}
-      {isPending && (
-        <div className="progressBar">
-          <ProgressBar animated now={100} />
-        </div>
-      )}
+    <div className="container-sm">
+      <div className="row">
+        {error && <div>{error}</div>}
+        {isPending && (
+          <div className="progressBar">
+            <h1>
+              <strong>Loading...</strong>
+            </h1>
+            <ProgressBar animated now={100} />
+          </div>
+        )}
 
-      {data &&
-        data.map((item) => {
-          return (
-            <div key={item.id} className="col-3 item border">
-              <Item itemData={item} displayData={"partDetailed"} />
-            </div>
-          );
-        })}
+        {data &&
+          data.map((item) => {
+            return (
+              <div key={item.id} className="col-3 item border">
+                <Item itemData={item} displayData={"partDetailed"} />
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }

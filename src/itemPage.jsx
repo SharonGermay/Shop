@@ -2,18 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Item from "./item";
 import { ProgressBar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function ItemPage(props) {
   let [data, setData] = useState(null);
   let [isPending, setIsPending] = useState(true);
   let [error, setError] = useState(null);
-
-  let addItemToStorage = () => {
-    let newCart = localStorage.getItem("cart");
-    // newCart.push(1);
-    // localStorage.setItem("cart", newCart);
-    console.log(newCart)
-  };
 
   let { id } = useParams();
 
@@ -53,16 +47,31 @@ export default function ItemPage(props) {
       {error && <div>{error}</div>}
       {isPending && (
         <div className="progressBar">
+          <h1>
+            <strong>Loading...</strong>
+          </h1>
           <ProgressBar animated now={100} />
         </div>
       )}
 
       {data && (
-        <Item
-          itemData={data}
-          displayData={"fullItemDetails"}
-          onAdd={addItemToStorage}
-        />
+        <div>
+          <Item
+            itemData={data}
+            displayData={"fullItemDetails"}
+            onAdd={props.onAdd}
+          />
+
+          <button
+            className="btn btn-success"
+            onClick={() => {
+              props.onAdd(id);
+              alert("Item added successfully !");
+            }}
+          >
+            Add to cart
+          </button>
+        </div>
       )}
     </div>
   );

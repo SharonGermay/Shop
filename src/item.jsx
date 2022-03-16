@@ -23,18 +23,6 @@ export default function Item(props) {
             </p>
           </div>
           <img src={props.itemData.image} alt="" />
-
-          <Link to="">
-            <button
-              className="btn btn-success"
-              onClick={() => {
-                props.onAdd();
-              }}
-            >
-              {" "}
-              Add to cart
-            </button>
-          </Link>
         </div>
       )}
     </div>

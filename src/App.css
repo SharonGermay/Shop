@@ -11,41 +11,6 @@
   /* background-image: url("https://media.istockphoto.com/photos/supermarket-aisle-blur-abstract-background-picture-id843469610?k=20&m=843469610&s=612x612&w=0&h=fi1fLbQzySZZefN7bAhDde0ZxNmEiAa6QEvSdc6wzz8="); */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* body {
-  background-color: #282c34;
-} */
-
 .menu-navbar {
   /* justify-content: center; */
   /* margin-bottom: 25px; */
@@ -99,4 +64,27 @@
 
 .singleItem button {
   margin-top: 15px;
+}
+
+.itemInCart{
+  display: flex;
+  border: solid black 1px ;
+  border-top: none;
+  margin-bottom: 15px
+
+}
+
+.itemInCart img{
+  width: 100px;
+  height: 100px;
+  margin-left: 5px;
+}
+
+.itemInCart div{
+  padding: 18px 24px;
+}
+
+.desc{
+  width: 60%;
+  margin: auto;
 }
