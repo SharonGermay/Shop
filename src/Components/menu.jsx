@@ -1,15 +1,32 @@
-import { Nav, Navbar, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export default function Menu(props) {
   return (
-    <div className="menu-navbar">
-      <Navbar bg="dark" variant="dark">
-        <Container>
-            <Link to={"/"}>Home</Link>
-            <Link to={"/items"}>Items</Link>
-            <Link to={"/cart"}>Cart</Link>
-        </Container>
-      </Navbar>
+    <div className=" menu-navbar">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div className="container-fluid">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to={"/"}>
+                  Home
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to={"/items"}>
+                  Items
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to={"/cart"}>
+                  Cart
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 }

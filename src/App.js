@@ -10,25 +10,9 @@ function App() {
   let [cart, setCart] = useState([]);
   let [data, setData] = useState([]);
 
-  // fetch("https://fakestoreapi.com/products")
-  //   .then((res) => {
-  //     if (!res.ok) {
-  //       throw Error("could not fetch the data for that resource");
-  //     }
-  //     return res.json();
-  //   })
-  //   .then((data) => {
-  //     setData(data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
   let addToCart = (product) => {
     setCart([...cart, product]);
-    console.log(cart);
   };
-
 
   useEffect(() => {
     const abortCont = new AbortController();
@@ -61,15 +45,15 @@ function App() {
         <Menu />
 
         <Routes>
-          <Route path="/" element={<ItemsList allItems={data} />} />
-          <Route path="/items" element={<ItemsList />} />
+          <Route path="/" element={<ItemsList allItems={data} title={"Item Catalog"}/>} />
+          <Route path="/items" element={<ItemsList allItems={data} />} />
           <Route
             path="/items/:id"
             element={<ItemPage onAdd={addToCart} allItems={data} />}
           />
           <Route
             path="/cart"
-            element={<Cart cartItems={cart} allItems={data} />}
+            element={<Cart cartItems={cart}/>}
           />
         </Routes>
       </Router>

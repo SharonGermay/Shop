@@ -1,23 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Item from "./item";
 import { ProgressBar } from "react-bootstrap";
 
 export default function ItemsList(props) {
-  // let [data, setData] = useState(null);
   let [error] = useState(null);
 
-  let {allItems} = props;
-
+  let { allItems } = props;
 
   return (
-    <div className="container-sm">
+    <div className="container items-container">
+      <div className="title">
+      <h2 className="display-6">{props.title}</h2>
+      </div>
       <div className="row">
         {error && <div>{error}</div>}
-        {allItems.length===0 && (
+        {allItems.length === 0 && (
           <div className="progressBar">
-            <h1>
-              <strong>Loading...</strong>
-            </h1>
+            <h3>
+              Loading...
+            </h3>
             <ProgressBar animated now={100} />
           </div>
         )}
@@ -25,7 +26,7 @@ export default function ItemsList(props) {
         {allItems &&
           allItems.map((item) => {
             return (
-              <div key={item.id} className="col-3 item border">
+              <div key={item.id} className="col-4 item">
                 <Item itemData={item} displayData={"partDetailed"} />
               </div>
             );

@@ -5,10 +5,10 @@ export default function Item(props) {
     <div>
       {props.displayData === "partDetailed" && (
         <div className="listItem">
-          <img src={props.itemData.image} alt="" />
           <Link to={`/items/${props.itemData.id}`}>
-            <p>{props.itemData.title}</p>
-          </Link>
+            <img src={props.itemData.image} alt="" />
+          </Link>{" "}
+          <p>{props.itemData.title}</p>
         </div>
       )}
 
