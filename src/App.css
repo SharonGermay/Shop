@@ -74,12 +74,16 @@
 
 .itemInCart img {
   width: 100px;
-  height: 100px;
+  height: 125px;
   margin-left: 5px;
 }
 
 .itemInCart div {
   padding: 18px 24px;
+}
+
+.itemInCart button{
+  /* height: 50%; */
 }
 
 .desc {
