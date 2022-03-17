@@ -16,9 +16,9 @@ export default function ItemsList(props) {
         {error && <div>{error}</div>}
         {allItems.length === 0 && (
           <div className="progressBar">
-            <h3>
+            <p>
               Loading...
-            </h3>
+            </p>
             <ProgressBar animated now={100} />
           </div>
         )}
