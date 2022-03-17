@@ -1,35 +1,28 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ItemsList from "./itemsList";
-import Menu from "./menu";
-import ItemPage from "./itemPage";
-import Cart from "./cart";
 import { useState, useEffect } from "react";
+import ItemsList from "./Components/itemsList";
+import Menu from "./Components/menu";
+import ItemPage from "./Components/itemPage";
+import Cart from "./Components/cart";
 
 function App() {
   let [cart, setCart] = useState([]);
-
   let [data, setData] = useState([]);
 
-  useEffect(() => {
-    const abortCont = new AbortController();
-    fetch("https://fakestoreapi.com/products", { signal: abortCont.signal })
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("could not fetch the data for that resource");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setData(data);
-      })
-      .catch((err) => {
-        if (err.name === "AbortError") {
-          console.log("fetch aborted");
-        }
-      });
-    return () => abortCont.abort();
-  }, [data]);
+  fetch("https://fakestoreapi.com/products")
+    .then((res) => {
+      if (!res.ok) {
+        throw Error("could not fetch the data for that resource");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      setData(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   let addToCart = (id) => {
     let newCart = [...cart];
@@ -45,7 +38,10 @@ function App() {
         <Routes>
           <Route path="/" element={<ItemsList allItems={data} />} />
           <Route path="/items" element={<ItemsList />} />
-          <Route path="/items/:id" element={<ItemPage onAdd={addToCart} />} />
+          <Route
+            path="/items/:id"
+            element={<ItemPage onAdd={addToCart} allItems={data} />}
+          />
           <Route
             path="/cart"
             element={<Cart cartItems={cart} allItems={data} />}

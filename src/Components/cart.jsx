@@ -1,12 +1,13 @@
 import { ProgressBar } from "react-bootstrap";
 
 export default function Cart(props) {
-  let itemsInCart = props.cartItems;
-  let allItems = props.allItems;
+  let {cartItems,allItems} = props
+
   let itemsInCartToDisplay = allItems.filter((item) =>
-    itemsInCart.includes(item.id)
+    cartItems.includes(item.id)
   );
 
+  console.log(cartItems)
   return (
     <div>
       <h1>Cart Items</h1>
