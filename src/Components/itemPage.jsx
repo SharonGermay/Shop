@@ -1,29 +1,14 @@
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Item from "./item";
-import { ProgressBar } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 export default function ItemPage(props) {
-  let [isPending, setIsPending] = useState(true);
-  let [error, setError] = useState(null);
+  // let [isPending, setIsPending] = useState(true);
 
   let { id } = useParams();
   let { allItems } = props;
-  let chosenItem = allItems.find((item) => id);
-
+  let chosenItem = allItems.find((item) => item.id === Number(id));
   return (
     <div>
-      {/* {error && <div>{error}</div>}
-      {isPending && (
-        <div className="progressBar">
-          <h1>
-            <strong>Loading...</strong>
-          </h1>
-          <ProgressBar animated now={100} />
-        </div>
-      )} */}
-
       {chosenItem && (
         <div>
           <Item
@@ -35,7 +20,7 @@ export default function ItemPage(props) {
           <button
             className="btn btn-success"
             onClick={() => {
-              props.onAdd(id);
+              props.onAdd(chosenItem);
               alert("Item added successfully !");
             }}
           >

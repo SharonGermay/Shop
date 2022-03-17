@@ -10,31 +10,56 @@ function App() {
   let [cart, setCart] = useState([]);
   let [data, setData] = useState([]);
 
-  fetch("https://fakestoreapi.com/products")
-    .then((res) => {
-      if (!res.ok) {
-        throw Error("could not fetch the data for that resource");
-      }
-      return res.json();
-    })
-    .then((data) => {
-      setData(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // fetch("https://fakestoreapi.com/products")
+  //   .then((res) => {
+  //     if (!res.ok) {
+  //       throw Error("could not fetch the data for that resource");
+  //     }
+  //     return res.json();
+  //   })
+  //   .then((data) => {
+  //     setData(data);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 
-  let addToCart = (id) => {
-    let newCart = [...cart];
-    newCart.push(id);
-    setCart(newCart);
+  let addToCart = (product) => {
+    setCart([...cart, product]);
     console.log(cart);
   };
 
+
+  useEffect(() => {
+    const abortCont = new AbortController();
+    fetch("https://fakestoreapi.com/products", { signal: abortCont.signal })
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("could not fetch the data for that resource");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setData(data);
+        // setIsPending(false);
+        // setError(null);
+      })
+      .catch((err) => {
+        if (err.name === "AbortError") {
+          console.log("fetch aborted");
+        } else {
+          // setIsPending(false);
+          // setError(err.message);
+        }
+      });
+    return () => abortCont.abort();
+  }, [data]);
+
   return (
     <div className="App">
-      <Menu />
       <Router>
+        <Menu />
+
         <Routes>
           <Route path="/" element={<ItemsList allItems={data} />} />
           <Route path="/items" element={<ItemsList />} />
