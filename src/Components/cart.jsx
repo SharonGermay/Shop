@@ -1,6 +1,10 @@
 export default function Cart(props) {
   let { cartItems } = props;
 
+  // let increseQty = () => {
+
+  // };
+
   return (
     <div className="container">
       <div className="title">
@@ -19,15 +23,33 @@ export default function Cart(props) {
               </div>
               <div className="price">
                 <p>
-                  <strong>Price:</strong> {item.price}$
+                  <strong>Price:</strong> {item.price * item.qty}$
                 </p>
               </div>
-              <div className="amount">
+              <div className="quantity">
                 <p>
-                  <strong>quantity:</strong> {item.q}
+                  <strong>quantity:</strong> {item.qty}
                 </p>
-                <button className="btn btn-success">+</button>
-                <button className="btn btn-danger">-</button>
+                <button
+                  className="btn btn-success"
+                  onClick={() => {
+                    item.qty += 1;
+                  }}
+                >
+                  +
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={(evt) => {
+                    if (item.qty === 1) {
+                      item.qty = 1;
+                    } else {
+                      item.qty -= 1;
+                    }
+                  }}
+                >
+                  -
+                </button>
               </div>
             </div>
             <hr />
