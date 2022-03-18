@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import Item from "./item";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 export default function ItemPage(props) {
   // let [isPending, setIsPending] = useState(true);
@@ -24,7 +25,7 @@ export default function ItemPage(props) {
               alert("Item added successfully !");
             }}
           >
-            Add to cart
+            Add to Cart
           </button>
         </div>
       )}

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+
 export default function Menu(props) {
   return (
-    <div className=" menu-navbar">
+    <div className="menu-navbar">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="navbarNav">
@@ -21,6 +23,7 @@ export default function Menu(props) {
               <li className="nav-item">
                 <Link className="nav-link" to={"/cart"}>
                   Cart
+                  <ShoppingCartIcon />
                 </Link>
               </li>
             </ul>

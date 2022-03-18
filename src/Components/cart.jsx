@@ -1,9 +1,15 @@
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import { useState, useEffect } from "react";
+
 export default function Cart(props) {
-  let { cartItems } = props;
+  let [cartItems, setCartItems] = useState(props.cartItems);
 
-  // let increseQty = () => {
-
-  // };
+  useEffect(() => {
+    setCartItems(props.cartItems);
+  }, [cartItems]);
 
   return (
     <div className="container">
@@ -30,26 +36,27 @@ export default function Cart(props) {
                 <p>
                   <strong>quantity:</strong> {item.qty}
                 </p>
-                <button
-                  className="btn btn-success"
-                  onClick={() => {
-                    item.qty += 1;
-                  }}
-                >
-                  +
-                </button>
-                <button
-                  className="btn btn-danger"
-                  onClick={(evt) => {
-                    if (item.qty === 1) {
-                      item.qty = 1;
-                    } else {
-                      item.qty -= 1;
-                    }
-                  }}
-                >
-                  -
-                </button>
+                <ButtonGroup>
+                  <Button
+                    onClick={() => {
+                      if (item.qty === 1) {
+                        item.qty = 1;
+                      } else {
+                        item.qty -= 1;
+                      }
+                    }}
+                  >
+                    <RemoveIcon fontSize="small" />
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      item.qty += 1;
+                    }}
+                  >
+                    <AddIcon fontSize="small" />
+                  </Button>
+                </ButtonGroup>
               </div>
             </div>
             <hr />
