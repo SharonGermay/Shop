@@ -11,7 +11,17 @@ function App() {
   let [data, setData] = useState([]);
 
   let addToCart = (product) => {
-    setCart([...cart, product]);
+    let exist = cart.find((item) => item.id === Number(product.id));
+
+    if (exist) {
+      setCart(
+        cart.map((p) =>
+          p.id === product.id ? { ...exist, qty: exist.qty + 1 } : p
+        )
+      );
+    } else {
+      setCart([...cart, { ...product, qty: 1 }]);
+    }
   };
 
   useEffect(() => {
@@ -45,16 +55,16 @@ function App() {
         <Menu />
 
         <Routes>
-          <Route path="/" element={<ItemsList allItems={data} title={"Item Catalog"}/>} />
+          <Route
+            path="/"
+            element={<ItemsList allItems={data} title={"Item Catalog"} />}
+          />
           <Route path="/items" element={<ItemsList allItems={data} />} />
           <Route
             path="/items/:id"
             element={<ItemPage onAdd={addToCart} allItems={data} />}
           />
-          <Route
-            path="/cart"
-            element={<Cart cartItems={cart}/>}
-          />
+          <Route path="/cart" element={<Cart cartItems={cart} />} />
         </Routes>
       </Router>
     </div>

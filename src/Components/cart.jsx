@@ -11,8 +11,8 @@ export default function Cart(props) {
 
       {cartItems.length > 0 &&
         cartItems.map((item) => (
-          <div>
-            <div key={item.id} className="itemInCart">
+          <div key={item.id}>
+            <div className="itemInCart">
               <img src={item.image} alt="" />
               <div className="desc">
                 <p>{item.description}</p>
@@ -21,19 +21,16 @@ export default function Cart(props) {
                 <p>
                   <strong>Price:</strong> {item.price}$
                 </p>
+              </div>
+              <div className="amount">
+                <p>
+                  <strong>quantity:</strong> {item.q}
+                </p>
                 <button className="btn btn-success">+</button>
                 <button className="btn btn-danger">-</button>
-
               </div>
-
             </div>
             <hr />
-
-            {/* <div className="amount">
-              <p>
-                <strong>Amount:</strong> 
-              </p>
-            </div> */}
           </div>
         ))}
     </div>
