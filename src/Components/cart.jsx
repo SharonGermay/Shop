@@ -2,14 +2,15 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { useState, useEffect } from "react";
+import { store, removeFromCartAction } from "../App";
+import { useState } from "react";
 
 export default function Cart(props) {
-  let [cartItems, setCartItems] = useState(props.cartItems);
+  let [cartItems, setCartItems] = useState(null);
 
-  useEffect(() => {
-    setCartItems(props.cartItems);
-  }, [cartItems]);
+  store.subscribe(() => {
+    setCartItems(store.getState());
+  });
 
   return (
     <div className="container">
@@ -17,10 +18,10 @@ export default function Cart(props) {
         <h1 className="display-5">Cart Items</h1>
       </div>
 
-      {cartItems.length === 0 && <p> Cart Is Empty </p>}
+      {store.getState().length === 0 && <p> Cart Is Empty </p>}
 
-      {cartItems.length > 0 &&
-        cartItems.map((item) => (
+      {store.getState().length > 0 &&
+        store.getState().map((item) => (
           <div key={item.id}>
             <div className="itemInCart">
               <img src={item.image} alt="" />
@@ -48,7 +49,6 @@ export default function Cart(props) {
                   >
                     <RemoveIcon fontSize="small" />
                   </Button>
-
                   <Button
                     onClick={() => {
                       item.qty += 1;
@@ -57,8 +57,20 @@ export default function Cart(props) {
                     <AddIcon fontSize="small" />
                   </Button>
                 </ButtonGroup>
+
+                <div>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      store.dispatch(removeFromCartAction(item));
+                    }}
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
             </div>
+
             <hr />
           </div>
         ))}

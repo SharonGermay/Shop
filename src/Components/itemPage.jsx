@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import Item from "./item";
 import { Link } from "react-router-dom";
+import { store, addToCartAction } from "../App";
 
 export default function ItemPage(props) {
   // let [isPending, setIsPending] = useState(true);
@@ -15,13 +16,12 @@ export default function ItemPage(props) {
           <Item
             itemData={chosenItem}
             displayData={"fullItemDetails"}
-            onAdd={props.onAdd}
           />
           <Link to={"/cart"}>
             <button
               className="btn btn-success"
               onClick={() => {
-                props.onAdd(chosenItem);
+                store.dispatch(addToCartAction(chosenItem));
                 alert("Item added successfully !");
               }}
             >
