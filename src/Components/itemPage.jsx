@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Item from "./item";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { Link } from "react-router-dom";
 
 export default function ItemPage(props) {
   // let [isPending, setIsPending] = useState(true);
@@ -17,16 +17,17 @@ export default function ItemPage(props) {
             displayData={"fullItemDetails"}
             onAdd={props.onAdd}
           />
-
-          <button
-            className="btn btn-success"
-            onClick={() => {
-              props.onAdd(chosenItem);
-              alert("Item added successfully !");
-            }}
-          >
-            Add to Cart
-          </button>
+          <Link to={"/cart"}>
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                props.onAdd(chosenItem);
+                alert("Item added successfully !");
+              }}
+            >
+              Add to Cart
+            </button>
+          </Link>
         </div>
       )}
     </div>
