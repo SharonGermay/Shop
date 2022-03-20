@@ -2,16 +2,10 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { store, removeFromCartAction } from "../App";
-import { useState } from "react";
+import store from "../store";
+import { removeFromCartAction } from "../actions";
 
 export default function Cart(props) {
-  let [cartItems, setCartItems] = useState(null);
-
-  store.subscribe(() => {
-    setCartItems(store.getState());
-  });
-
   return (
     <div className="container">
       <div className="title">

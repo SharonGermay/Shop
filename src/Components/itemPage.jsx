@@ -1,11 +1,10 @@
 import { useParams } from "react-router-dom";
 import Item from "./item";
 import { Link } from "react-router-dom";
-import { store, addToCartAction } from "../App";
+import { addToCartAction } from "../actions";
+import store from "../store";
 
 export default function ItemPage(props) {
-  // let [isPending, setIsPending] = useState(true);
-
   let { id } = useParams();
   let { allItems } = props;
   let chosenItem = allItems.find((item) => item.id === Number(id));
@@ -13,10 +12,7 @@ export default function ItemPage(props) {
     <div>
       {chosenItem && (
         <div>
-          <Item
-            itemData={chosenItem}
-            displayData={"fullItemDetails"}
-          />
+          <Item itemData={chosenItem} displayData={"fullItemDetails"} />
           <Link to={"/cart"}>
             <button
               className="btn btn-success"

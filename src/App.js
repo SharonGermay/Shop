@@ -5,38 +5,16 @@ import ItemsList from "./Components/itemsList";
 import Menu from "./Components/menu";
 import ItemPage from "./Components/itemPage";
 import Cart from "./Components/cart";
-import { createStore } from "redux";
+import store from "./store";
 
-export const addToCartAction = (item) => {
-  return { type: "ADD", data: item };
-};
-
-export const removeFromCartAction = (item) => {
-  return { type: "REMOVE", data: item };
-};
-
-//Reducer
-const cartReducer = (state = [], action) => {
-  switch (action.type) {
-    case "ADD":
-      let exist = state.find((item) => item.id === Number(action.data.id));
-
-      if (exist) {
-        return [...state, { ...action.data, qty: action.data.qty + 1 }];
-      } else {
-        return [...state, { ...action.data, qty: 1 }];
-      }
-    case "REMOVE":
-      return state.filter(item => item.id !== action.data.id);
-    default:
-      return state;
-  }
-};
-
-export const store = createStore(cartReducer);
 
 function App() {
   let [data, setData] = useState([]);
+  let [cartItems, setCartItems] = useState([]);
+
+  store.subscribe(() => {
+    setCartItems(store.getState());
+  });
 
   useEffect(() => {
     const abortCont = new AbortController();
