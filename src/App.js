@@ -7,18 +7,18 @@ import ItemPage from "./Components/itemPage";
 import Cart from "./Components/cart";
 import store from "./store";
 
-
 function App() {
   let [data, setData] = useState([]);
   let [cartItems, setCartItems] = useState([]);
+  let url = process.env.REACT_APP_API + "products";
 
   store.subscribe(() => {
     setCartItems(store.getState());
   });
 
-  useEffect(() => {
+  const refreshList = () => {
     const abortCont = new AbortController();
-    fetch("https://fakestoreapi.com/products", { signal: abortCont.signal })
+    fetch(url, { signal: abortCont.signal })
       .then((res) => {
         if (!res.ok) {
           throw Error("could not fetch the data for that resource");
@@ -39,6 +39,10 @@ function App() {
         }
       });
     return () => abortCont.abort();
+  };
+
+  useEffect(() => {
+    refreshList();
   }, [data]);
 
   return (
